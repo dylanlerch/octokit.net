@@ -596,7 +596,7 @@ namespace Octokit.Tests.Reactive
                 string expectedUri = "repos/org/repo/contents/path/to/file";
                 client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                gitHubClient.Connection.Received().Delete(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+                gitHubClient.Connection.Received().Delete<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
             }
 
             [Fact]
@@ -609,7 +609,7 @@ namespace Octokit.Tests.Reactive
                 string expectedUri = "repositories/1/contents/path/to/file";
                 client.DeleteFile(1, "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                gitHubClient.Connection.Received().Delete(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+                gitHubClient.Connection.Received().Delete<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
             }
 
             [Fact]
@@ -621,7 +621,7 @@ namespace Octokit.Tests.Reactive
 
                 client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                gitHubClient.Connection.Received().Delete(
+                gitHubClient.Connection.Received().Delete<RepositoryContentChangeSet>(
                     Arg.Any<Uri>(),
                     Arg.Is<DeleteFileRequest>(a =>
                         a.Message == "message"
@@ -638,7 +638,7 @@ namespace Octokit.Tests.Reactive
 
                 client.DeleteFile(1, "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                gitHubClient.Connection.Received().Delete(
+                gitHubClient.Connection.Received().Delete<RepositoryContentChangeSet>(
                     Arg.Any<Uri>(),
                     Arg.Is<DeleteFileRequest>(a =>
                         a.Message == "message"

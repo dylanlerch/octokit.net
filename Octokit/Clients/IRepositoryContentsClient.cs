@@ -285,7 +285,7 @@ namespace Octokit
         /// <param name="name">The name of the repository</param>
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
-        Task DeleteFile(string owner, string name, string path, DeleteFileRequest request);
+        Task<RepositoryContentChangeSet> DeleteFile(string owner, string name, string path, DeleteFileRequest request);
 
         /// <summary>
         /// Creates a commit that deletes a file in a repository.
@@ -293,7 +293,7 @@ namespace Octokit
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
-        Task DeleteFile(long repositoryId, string path, DeleteFileRequest request);
+        Task<RepositoryContentChangeSet> DeleteFile(long repositoryId, string path, DeleteFileRequest request);
     }
 
     /// <summary>

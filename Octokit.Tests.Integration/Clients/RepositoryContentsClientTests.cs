@@ -352,11 +352,12 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Owner.Login,
                     repository.Name,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                      () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -394,10 +395,11 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Id,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                      () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -440,11 +442,12 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Owner.Login,
                     repository.Name,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha, branchName));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                     () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -485,10 +488,11 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Id,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha, branchName));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                     () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -528,11 +532,12 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Owner.Login,
                     repository.Name,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                      () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -570,10 +575,11 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Id,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                      () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -616,11 +622,12 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Owner.Login,
                     repository.Name,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha, branchName));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                     () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
@@ -661,10 +668,11 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("New Content", contents.First().Content);
                 fileSha = contents.First().Sha;
 
-                await fixture.DeleteFile(
+                var delete = await fixture.DeleteFile(
                     repository.Id,
                     "somefile.txt",
                     new DeleteFileRequest("Deleted file", fileSha, branchName));
+                Assert.Equal("Deleted file", delete.Commit.Message);
 
                 await Assert.ThrowsAsync<NotFoundException>(
                     () => fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt"));
