@@ -431,7 +431,7 @@ namespace Octokit.Reactive
         /// <param name="name">The name of the repository</param>
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
-        public IObservable<Unit> DeleteFile(string owner, string name, string path, DeleteFileRequest request)
+        public IObservable<RepositoryContentChangeSet> DeleteFile(string owner, string name, string path, DeleteFileRequest request)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
             Ensure.ArgumentNotNullOrEmptyString(name, nameof(name));
@@ -447,7 +447,7 @@ namespace Octokit.Reactive
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
-        public IObservable<Unit> DeleteFile(long repositoryId, string path, DeleteFileRequest request)
+        public IObservable<RepositoryContentChangeSet> DeleteFile(long repositoryId, string path, DeleteFileRequest request)
         {
             Ensure.ArgumentNotNullOrEmptyString(path, nameof(path));
             Ensure.ArgumentNotNull(request, nameof(request));

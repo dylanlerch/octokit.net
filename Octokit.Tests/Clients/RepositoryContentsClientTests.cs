@@ -528,7 +528,7 @@ namespace Octokit.Tests.Clients
                 string expectedUri = "repos/org/repo/contents/path/to/file";
                 await client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                connection.Received().Delete(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+                connection.Received().Delete<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
             }
 
             [Fact]
@@ -540,7 +540,7 @@ namespace Octokit.Tests.Clients
                 string expectedUri = "repositories/1/contents/path/to/file";
                 await client.DeleteFile(1, "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                connection.Received().Delete(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+                connection.Received().Delete<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
             }
 
             [Fact]
@@ -551,7 +551,7 @@ namespace Octokit.Tests.Clients
 
                 await client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                connection.Received().Delete(
+                connection.Received().Delete<RepositoryContentChangeSet>(
                     Arg.Any<Uri>(),
                     Arg.Is<DeleteFileRequest>(a =>
                         a.Message == "message"
@@ -567,7 +567,7 @@ namespace Octokit.Tests.Clients
 
                 await client.DeleteFile(1, "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
 
-                connection.Received().Delete(
+                connection.Received().Delete<RepositoryContentChangeSet>(
                     Arg.Any<Uri>(),
                     Arg.Is<DeleteFileRequest>(a =>
                         a.Message == "message"

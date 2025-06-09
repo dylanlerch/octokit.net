@@ -499,7 +499,7 @@ namespace Octokit
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
         [ManualRoute("DELETE", "/repos/{owner}/{repo}/contents/{path}")]
-        public Task DeleteFile(string owner, string name, string path, DeleteFileRequest request)
+        public Task<RepositoryContentChangeSet> DeleteFile(string owner, string name, string path, DeleteFileRequest request)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
             Ensure.ArgumentNotNullOrEmptyString(name, nameof(name));
@@ -507,7 +507,7 @@ namespace Octokit
             Ensure.ArgumentNotNull(request, nameof(request));
 
             var deleteUrl = ApiUrls.RepositoryContent(owner, name, path);
-            return ApiConnection.Delete(deleteUrl, request);
+            return ApiConnection.Delete<RepositoryContentChangeSet>(deleteUrl, request);
         }
 
         /// <summary>
@@ -517,13 +517,13 @@ namespace Octokit
         /// <param name="path">The path to the file</param>
         /// <param name="request">Information about the file to delete</param>
         [ManualRoute("DELETE", "/repositorioes/{id}/contents/{path}")]
-        public Task DeleteFile(long repositoryId, string path, DeleteFileRequest request)
+        public Task<RepositoryContentChangeSet> DeleteFile(long repositoryId, string path, DeleteFileRequest request)
         {
             Ensure.ArgumentNotNullOrEmptyString(path, nameof(path));
             Ensure.ArgumentNotNull(request, nameof(request));
 
             var deleteUrl = ApiUrls.RepositoryContent(repositoryId, path);
-            return ApiConnection.Delete(deleteUrl, request);
+            return ApiConnection.Delete<RepositoryContentChangeSet>(deleteUrl, request);
         }
     }
 }
